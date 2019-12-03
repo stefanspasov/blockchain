@@ -17,7 +17,6 @@ class Blockchain:
 def main():
     blockchain = Blockchain()
     blockchain.add_block('one')
-    blockchain.add_block('two')
     print(blockchain)
 
 if __name__ == '__main__':
