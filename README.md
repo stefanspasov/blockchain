@@ -1,16 +1,21 @@
+#To activate venv 
+.\env\Scripts\activate 
+
 #To test:  
-.\env\Scripts\python.exe -m pytest backend/tests
+python -m pytest backend/tests
 
 #To run:
- .\env\Scripts\python.exe -m backend.blockchain.blockchain
+ python -m backend.blockchain.blockchain
+
+#TO START FROM SCRATCH
 
 #To create virtual env
 py -m pip install --user virtualenv
 py -m venv env
-.\env\Scripts\activate  
-
-#To install 1 package 
-.\env\Scripts\python.exe -m pip install -U pytest
+.\env\Scripts\activate 
 
 #To install dependencies from file 
 pip install --user --requirement requirements.txt
+ 
+#To install only a single package 
+.\env\Scripts\python.exe -m pip install -U pytest
