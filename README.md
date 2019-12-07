@@ -18,4 +18,4 @@ py -m venv env
 pip install --user --requirement requirements.txt
  
 #To install only a single package 
-.\env\Scripts\python.exe -m pip install -U pytest
+python -m pip install -U pytest

@@ -29,3 +29,22 @@ def test_is_valid_chain_bad_genesis(blockchain_three_blocks):
     
     with pytest.raises(Exception, match='The chain must start with genesis'):
         Blockchain.is_valid_chain(blockchain_three_blocks.chain)
+
+def test_replace_chain(blockchain_three_blocks):
+    blockchain = Blockchain()
+    blockchain.replace_chain(blockchain_three_blocks.chain)
+
+    assert blockchain.chain == blockchain_three_blocks.chain
+
+def test_replace_chain_not_longer(blockchain_three_blocks):
+    blockchain = Blockchain()
+
+    with pytest.raises(Exception):
+        blockchain_three_blocks.replace_chain(blockchain.chain)
+
+def test_replace_chain_bad_chain(blockchain_three_blocks):
+    blockchain = Blockchain()
+    blockchain_three_blocks.chain[1].hash = 'evil'
+
+    with pytest.raises(Exception):
+        blockchain.replace_chain(blockchain_three_blocks.chain) 
