@@ -19,6 +19,22 @@ class Blockchain:
         Serialize the chain into a list of blocks
         """
         return list(map(lambda block: block.to_json(), self.chain))
+    
+    def replace_chain(self, new_chain):
+        """
+        Replace the local chain with the incoming one if the following applies:
+         - The incoming chain is longer than the local
+         - The incomng chain is valid
+        """
+        if len(new_chain) <= len(self.chain):
+            raise Exception('Cannot replace. The incoming chain must be longer')
+
+        try:
+            Blockchain.is_valid_chain(new_chain)
+        except Exception as e:
+            raise Exception(f'Cannot replace. The incoming chain is invalid: {e}')
+
+        self.chain = new_chain 
 
     @staticmethod
     def is_valid_chain(chain):

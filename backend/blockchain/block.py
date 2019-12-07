@@ -43,7 +43,7 @@ class Block:
         """ Serialize into dictionary of its attributres
         """
         return self.__dict__
-        
+
     @staticmethod
     def mine_block(last_block, data):
         """
@@ -70,6 +70,13 @@ class Block:
         Generate genesis block. 
         """
         return Block(**GENESIS_DATA)
+
+    @staticmethod
+    def from_json(block_json):
+        """
+        Deserialize a block's json representation in Block instance. 
+        """
+        return Block(**block_json)
 
     @staticmethod
     def adjust_difficulty(last_block, new_timestamp):
