@@ -19,7 +19,15 @@ class Blockchain:
         Serialize the chain into a list of blocks
         """
         return list(map(lambda block: block.to_json(), self.chain))
-    
+
+    @staticmethod
+    def from_json(chain_json):
+        blockchain = Blockchain()
+        blockchain.chain = list(
+            map(lambda block_json: Block.from_json(block_json), chain_json)
+        )
+        return blockchain
+
     def replace_chain(self, new_chain):
         """
         Replace the local chain with the incoming one if the following applies:

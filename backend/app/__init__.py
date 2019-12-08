@@ -33,8 +33,17 @@ def route_blockchain_mine():
 ROOT_PORT = 5000
 PORT = ROOT_PORT
 
-print(sys.argv[1])
-if sys.argv[1] == 'peer':
-    PORT = random.randint(5001, 6000)
+try: 
+    print('Peer')
+    if sys.argv[1] == 'peer':
+        PORT = random.randint(5001, 6000)
+        result = requests.get(f'http://localhost:{ROOT_PORT}/blockchain')
+        result_blockchain = Blockchain.from_json(result.json())
+
+        blockchain.replace_chain(result_blockchain.chain)
+        print(f'result.json: {result.json()}')
+        
+except Exception as e: 
+    print(f'Not a peer or error: {e}')
 
 app.run(port=PORT)
